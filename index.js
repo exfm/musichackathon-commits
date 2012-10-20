@@ -12,7 +12,8 @@ var fs = require('fs'),
     request = require('superagent'),
     Repo = require('./lib/repo'),
     querystring = require('querystring'),
-    bouncy = require('bouncy');
+    bouncy = require('bouncy'),
+    crypto = require('crypto');
 
 
 gith = gith.create(10000);
@@ -210,13 +211,15 @@ function getReadme(name){
 }
 
 function simplifyPayload(payload){
+    var image = "https://secure.gravatar.com/avatar/"+crypto.createHash('md5').update(payload.original.repository.owner.email).digest("hex")+"?s=160";
     return {
         'username': payload.original.pusher.name,
         'repoName': payload.original.repository.owner.name + "/" +payload.original.repository.name,
         'message':  payload.original.head_commit.message,
         'url': payload.original.head_commit.url,
         'timestamp': new Date(payload.original.head_commit.timestamp),
-        'id': payload.original.head_commit.id
+        'id': payload.original.head_commit.id,
+        'image': image
     };
 }
 
