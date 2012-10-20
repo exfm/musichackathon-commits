@@ -23,10 +23,13 @@ html
         .row#commits
             - recentCommits.forEach(function(commit){
                 div(class="commit")
+                    div(class="image")
+                        img(src=commit['image'])
+
                     div(class="header")
-                        a(href="")= commit['username']
+                        a(href="https://github.com/"=commit['username'], target="_blank")= commit['username']
                         span pushed to
-                        a(href="")= commit['repoName']
+                        a(href="/repo/"=commit['repoName'])= commit['repoName']
 
                     div.message= commit['message']
 
