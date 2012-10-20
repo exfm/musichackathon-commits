@@ -11,7 +11,8 @@ var fs = require('fs'),
     io = require('socket.io').listen(server),
     request = require('superagent'),
     Repo = require('./lib/repo'),
-    querystring = require('querystring');
+    querystring = require('querystring'),
+    bouncy = require('bouncy');
 
 
 gith = gith.create(10000);
@@ -194,4 +195,11 @@ io.sockets.on('connection', function(socket){
     });
 });
 
-server.listen(8080);
+server.listen(12000);
+
+bouncy(function (req, bounce) {
+    if(req.url === '/gith' && req.method === 'POST'){
+        return bounce(10000);
+    }
+    return bounce(12000);
+}).listen(8080);
