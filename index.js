@@ -73,6 +73,9 @@ function init(cb){
 }
 
 function addRepo(name, token, cb){
+    if(REPOS.hasOwnProperty(name)){
+        return cb(REPOS[name]);
+    }
     fs.readFile('config.json', 'utf-8', function(err, data){
         var config = JSON.parse(data);
         config.repos.push(name);
