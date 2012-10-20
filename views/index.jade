@@ -1,0 +1,29 @@
+!!!
+html
+  head
+    title Music Hackathon Commits
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/bootstrap-responsive.css')
+    link(rel='stylesheet', href='/css/style.css')
+  body(style="padding-bottom: 0px;")
+
+    .navbar.navbar-inverse.navbar-fixed-top
+        .navbar-inner
+            .container
+                a.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a.brand(href="#") Music Hackathon Commits
+                .nav-collapse.collapse
+                    ul.nav
+                        li.active
+                            a(href="/") Home
+                        li
+                            a(href="/add-repo") Add Your Repo
+    .container
+        .row
+
+    script(src='/js/jquery.js')
+    script(src='/socket.io/socket.io.js')
+    script(src='/js/main.js')

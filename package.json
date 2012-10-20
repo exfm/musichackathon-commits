@@ -11,10 +11,19 @@
   "scripts": {
     "test": "mocha"
   },
-  "dependencies": {},
+  "dependencies": {
+    "express": "3.0.X",
+    "socket.io": "0.9.10",
+    "gith": "1.0.2",
+    "superagent": "0.9.7",
+    "when": "1.5.1",
+    "sequence": "2.2.1",
+    "jade": "*",
+    "nconf": "0.6.4",
+    "markdown": "0.4.0"
+  },
   "devDependencies": {
-    "mocha": "1.4.1",
-    "chai": "1.2.0"
+    "mocha": "1.4.1"
   },
   "optionalDependencies": {},
   "engines": {

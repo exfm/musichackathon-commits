@@ -1,0 +1,31 @@
+!!!
+html
+  head
+    title Add Repo
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/bootstrap-responsive.css')
+    link(rel='stylesheet', href='/css/style.css')
+  body(style="padding-bottom: 0px;")
+
+    .navbar.navbar-inverse.navbar-fixed-top
+        .navbar-inner
+            .container
+                a.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a.brand(href="#") Music Hackathon Commits
+
+    .container
+        .row
+            h1 Add New Repo
+            form.form-horizontal(action="/add-repo", method="post", enctype="multipart/form-data")
+                div.control-group
+                    label.control-label Email
+                    div.controls
+                        input(type="text", name="repo", placeholder="username/repo")
+                div.control-group
+                    div.controls
+                        button(type="submit") Add repo
+
+    script(src='/js/jquery.js')
