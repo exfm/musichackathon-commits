@@ -48,6 +48,7 @@ function saveRecentCommits(){
 var REPOS = {},
     RECENT_COMMITS = [];
 
+
 function init(cb){
     sequence().then(function(next){
         when.all(nconf.get('repos').map(function(name){
