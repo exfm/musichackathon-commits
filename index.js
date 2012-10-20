@@ -88,7 +88,6 @@ function addRepo(name, token){
 function onPayload(repo, payload){
     var simple = simplifyPayload(payload);
     RECENT_COMMITS.push(simple);
-    console.log(simple);
     Object.keys(sockets).forEach(function(id){
         sockets[id].emit('commit', simple);
     });
@@ -235,7 +234,6 @@ io.sockets.on('connection', function(socket){
 server.listen(12000);
 
 bouncy(function (req, bounce) {
-    console.log('Request', req);
     if(req.url === '/gith' && req.method === 'POST'){
         return bounce(10000);
     }
