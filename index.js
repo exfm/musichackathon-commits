@@ -39,6 +39,12 @@ app.configure('development', function(){
 });
 
 
+function saveRecentCommits(){
+    fs.writeFile("commits.json", JSON.stringify(RECENT_COMMITS), function(){
+        console.log('saved commits');
+    });
+}
+
 var REPOS = {},
     RECENT_COMMITS = [];
 
@@ -84,6 +90,7 @@ function onPayload(repo, payload){
     Object.keys(sockets).forEach(function(id){
         sockets[id].emit('commit', simple);
     });
+    saveRecentCommits();
 }
 
 
