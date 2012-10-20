@@ -26,7 +26,9 @@ html
             - recentCommits.forEach(function(commit){
                 div(class="commit")
                     div(class="header")
-                        a(href="")= commit['username'] pushed to a(href="")= commit['repoName']
+                        a(href="")= commit['username']
+                        span pushed to
+                        a(href="")= commit['repoName']
 
                     div.message= commit['message']
 
