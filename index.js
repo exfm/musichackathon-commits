@@ -98,7 +98,7 @@ function onPayload(repo, payload){
 init(function(repos){
     repos.forEach(function(repo){
         repo.gith.on('all', function(payload){
-            console.log('got payload', payload);
+            console.log('got payload', JSON.stringify(payload, null, 4));
             onPayload(repo, payload);
         });
     });
