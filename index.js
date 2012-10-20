@@ -209,7 +209,7 @@ function getReadme(name){
 }
 
 function simplifyPayload(payload){
-    var image = "https://secure.gravatar.com/avatar/"+crypto.createHash('md5').update(payload.original.repository.owner.email).digest("hex")+"?s=160";
+    var image = "https://secure.gravatar.com/avatar/"+crypto.createHash('md5').update(payload.original.head_commit.author.email).digest("hex")+"?s=160";
     return {
         'username': payload.original.pusher.name,
         'repoName': payload.original.repository.owner.name + "/" +payload.original.repository.name,
