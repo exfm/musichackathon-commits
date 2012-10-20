@@ -221,7 +221,6 @@ function simplifyPayload(payload){
     };
 }
 
-
 var sockets = {};
 io.sockets.on('connection', function(socket){
     sockets[socket.id] = socket;
