@@ -46,10 +46,10 @@ function init(cb){
         when.all(nconf.get('repos').map(function(name){
             return Repo.load(name);
         }), next);
-    // }).then(function(next, repos){
-    //     when.all(repos.map(function(repo){
-    //         return repo.ensureHook(nconf.get('url'));
-    //     }), next);
+    }).then(function(next, repos){
+        when.all(repos.map(function(repo){
+            return repo.ensureHook('http://musichackathon-commits.ex.fm/gith');
+        }), next);
     }).then(function(next, repos){
         repos.forEach(function(repo){
             repo.gith = gith({
