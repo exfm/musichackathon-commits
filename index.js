@@ -94,7 +94,6 @@ function onPayload(repo, payload){
     saveRecentCommits();
 }
 
-
 init(function(repos){
     repos.forEach(function(repo){
         repo.gith.on('all', function(payload){
