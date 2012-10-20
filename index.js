@@ -46,7 +46,7 @@ function saveRecentCommits(){
 }
 
 var REPOS = {},
-    RECENT_COMMITS = [];
+    RECENT_COMMITS = JSON.parse(fs.readFileSync("commits.json"));
 
 
 function init(cb){
