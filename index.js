@@ -231,10 +231,3 @@ io.sockets.on('connection', function(socket){
 });
 
 server.listen(12000);
-
-bouncy(function (req, bounce) {
-    if(req.url === '/gith' && req.method === 'POST'){
-        return bounce(10000);
-    }
-    return bounce(12000);
-}).listen(8080);
