@@ -5,8 +5,6 @@ var socket = io.connect('http://musichackathon-commits.ex.fm');
 
 socket.on('commit', function (data) {
     console.log('Got commit!', data);
-
-
     var h = '<div class="commit" id="commit-'+data.id+'"><div class="header">';
     h += '<a href="https://github.com/'+data.username+'">'+data.username+'</a>';
     h += '<span>pushed to</span><a href="/repo/'+data.repoName+'">'+data.repoName+'</a>';
