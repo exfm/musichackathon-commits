@@ -24,13 +24,11 @@ html
     .container
         .row
             - recentCommits.forEach(function(commit){
-                div.commit
-                    div.header
-                        a(href="")
-                            commit['username']
+                div(class="commit")
+                    div(class="header")
+                        a(href="")= commit['username']
                         pushed to
-                        a(href="")
-                            commit['repoName']
+                        a(href="")= commit['repoName']
 
                     div.message= commit['mesage']
 
