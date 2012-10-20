@@ -2,7 +2,6 @@
 
 var socket = io.connect('http://musichackathon-commits.ex.fm');
 
-
 socket.on('commit', function (data) {
     console.log('Got commit!', data);
     var h = '<div class="commit" id="commit-'+data.id+'"><div class="image"><img src="'+data.image+'"/></div><div class="header">';
