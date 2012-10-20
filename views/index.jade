@@ -22,7 +22,7 @@ html
                         li
                             a(href="/add-repo") Add Your Repo
     .container
-        .row
+        .row#commits
             - recentCommits.forEach(function(commit){
                 div(class="commit")
                     div(class="header")
