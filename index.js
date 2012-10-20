@@ -72,7 +72,7 @@ function init(cb){
     });
 }
 
-function addRepo(name, token){
+function addRepo(name, token, cb){
     fs.readFile('config.json', 'utf-8', function(err, data){
         var config = JSON.parse(data);
         config.repos.push(name);
@@ -80,6 +80,7 @@ function addRepo(name, token){
         fs.writeFile('config.json', JSON.stringify(config, null, 4), 'utf-8', function(){
             Repo.load(name).then(function(repo){
                 REPOS[name] = repo;
+                cb(repo);
             });
         });
     });
@@ -127,7 +128,7 @@ app.get('/add-repo', function(req, res){
 
 app.post('/add-repo', function(req, res){
     addRepo(req.param('repo'), req.param('token'), function(repo){
-        res.redirect("/repo/" + req.param('repo'));
+        res.redirect("/");
     });
 });
 
