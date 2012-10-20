@@ -129,6 +129,7 @@ app.post('/add-repo', function(req, res){
 
 app.get('/oauth', function(req, res){
     exchangeGithubToken(req, function(token){
+        console.log('Set access token cookie');
         res.cookie('github_access_token', token);
         res.redirect('/add-repo');
     });
