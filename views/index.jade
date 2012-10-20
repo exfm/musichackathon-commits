@@ -27,9 +27,12 @@ html
                         img(src=commit['image'])
 
                     div(class="header")
-                        a(href="https://github.com/"= commit['username'], target="_blank")= commit['username']
-                        span pushed to
-                        a(href="/repo/"=commit['repoName'])= commit['repoName']
+                            commit['username']
+
+                        span
+                            pushed to
+
+                        a(href="/repo/"= commit['repoName'])= commit['repoName']
 
                     div.message= commit['message']
 
