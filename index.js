@@ -120,6 +120,7 @@ app.get('/', function(req, res){
 
 app.get('/add-repo', function(req, res){
     var cookies = querystring.parse(req.headers.cookie);
+    console.log('cookies', cookies);
 
     if(!cookies.github_access_token){
         return redirectToGithub(res);
