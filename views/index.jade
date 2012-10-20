@@ -27,12 +27,9 @@ html
                         img(src=commit['image'])
 
                     div(class="header")
-                        commit['username']
-
-                        span
-                            pushed to
-
-                        a(href="/repo/"= commit['repoName'])= commit['repoName']
+                        #{commit['username']} pushed to
+                        a(href="/repo/"#{commit['repoName']})
+                            #{commit['repoName']}
 
                     div.message= commit['message']
 
