@@ -13,7 +13,7 @@ socket.on('commit', function (data) {
     h += '</div><div class="message">'+data.message+'</div></div>';
 
     $('#commits').prepend(h);
-    $('commit-'+data.id).show('fast');
+    $('#commit-'+data.id).show('fast');
 });
 
 socket.on('new repo', function (data) {
