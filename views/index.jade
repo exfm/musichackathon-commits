@@ -20,20 +20,18 @@ html
                         li
                             a(href="/add-repo") Add Your Repo: http://musichackathon-commits.ex.fm !
     .container
-        .row#commits
-            - recentCommits.forEach(function(commit){
-                div(class="commit")
-                    div(class="image")
+        div#commits
+            each commit in recentCommits
+                div(class="commit row")
+                    div(class="image span-2")
                         img(src=commit['image'])
+                    div.span10
+                        div(class="header")
+                            =commit['username']
+                            span &nbsp;pushed to&nbsp;
+                            = commit.repoName
 
-                    div(class="header")
-                        #{commit['username']} pushed to
-                        a(href="/repo/"#{commit['repoName']})
-                            #{commit['repoName']}
-
-                    div.message= commit['message']
-
-            - })
+                        div.message= commit['message']
 
     script(src='/js/jquery.js')
     script(src='/socket.io/socket.io.js')
