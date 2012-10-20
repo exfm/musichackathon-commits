@@ -79,7 +79,13 @@ function addRepo(name, token, cb){
     fs.readFile('config.json', 'utf-8', function(err, data){
         var config = JSON.parse(data);
         config.repos.push(name);
+        config.repo_tokens[name] = token;
+
+        console.log('Config', JSON.stringify(config, null, 4));
+
         nconf.set('repos', config.repos);
+        nconf.set('repo_tokens', config.repo_tokens);
+
         fs.writeFile('config.json', JSON.stringify(config, null, 4), 'utf-8', function(){
             Repo.load(name).then(function(repo){
                 REPOS[name] = repo;
