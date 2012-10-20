@@ -84,6 +84,7 @@ function onPayload(repo, payload){
 init(function(repos){
     repos.forEach(function(repo){
         repo.gith.on('all', function(payload){
+            console.log('got payload', payload);
             onPayload(repo, payload);
         });
     });
@@ -203,6 +204,7 @@ io.sockets.on('connection', function(socket){
 server.listen(12000);
 
 bouncy(function (req, bounce) {
+    console.log('Request', req);
     if(req.url === '/gith' && req.method === 'POST'){
         return bounce(10000);
     }
