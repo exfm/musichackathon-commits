@@ -16,6 +16,7 @@ socket.on('commit', function (data) {
     $('#commit-'+data.id).show('fast');
 });
 
+
 socket.on('new repo', function (data) {
     console.log('New repo!', data);
 });
