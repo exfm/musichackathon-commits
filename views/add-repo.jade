@@ -26,6 +26,7 @@ html
                         input(type="text", name="repo", placeholder="username/repo")
                 div.control-group
                     div.controls
+                        input(type="hidden", name="token", value=token)
                         button(type="submit") Add repo
 
     script(src='/js/jquery.js')

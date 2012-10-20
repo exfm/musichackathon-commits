@@ -32,7 +32,7 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
-  app.use(express.cookieParser("secret"));
+  app.use(express.cookieParser());
 });
 
 app.configure('development', function(){
@@ -119,28 +119,21 @@ app.get('/', function(req, res){
 });
 
 app.get('/add-repo', function(req, res){
-    var cookies = querystring.parse(req.headers.cookie);
-    console.log('cookies', req.cookies);
-
-    if(!cookies.github_access_token){
+    if(!req.param('token')){
         return redirectToGithub(res);
     }
-    res.render('add-repo');
+    res.render('add-repo', {'token': req.param('token')});
 });
 
 app.post('/add-repo', function(req, res){
-    var cookies = querystring.parse(req.headers.cookie);
-
-    addRepo(req.param('repo'), cookies.github_access_token, function(repo){
+    addRepo(req.param('repo'), req.param('token'), function(repo){
         res.redirect("/repo/" + req.param('repo'));
     });
 });
 
 app.get('/oauth', function(req, res){
     exchangeGithubToken(req, function(token){
-        console.log('Set access token cookie');
-        res.cookie('github_access_token', token);
-        res.redirect('/add-repo');
+        res.redirect('/add-repo?token=' + token);
     });
 });
 
@@ -182,7 +175,6 @@ function exchangeGithubToken(req, cb){
     })
     .set("Accept", "application/json")
     .end(function(res){
-        console.log(res.body);
         cb(res.body.access_token);
     });
 }
