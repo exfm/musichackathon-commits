@@ -27,12 +27,12 @@ html
                 div.commit
                     div.header
                         a(href="")
-                            commit.username
+                            commit['username']
                         pushed to
                         a(href="")
-                            commit.repoName
+                            commit['repoName']
 
-                    div.message= commit.mesage
+                    div.message= commit['mesage']
 
             - })
 
