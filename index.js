@@ -39,7 +39,8 @@ app.configure('development', function(){
 });
 
 
-var REPOS = {};
+var REPOS = {},
+    RECENT_COMMITS = [];
 
 function init(cb){
     sequence().then(function(next){
@@ -77,7 +78,12 @@ function addRepo(name, token){
 }
 
 function onPayload(repo, payload){
-    console.log(repo.name + ': ', payload);
+    var simple = simplifyPayload(payload);
+    RECENT_COMMITS.push(simple);
+    console.log(simple);
+    Object.keys(sockets).forEach(function(id){
+        sockets[id].emit('commit', simple);
+    });
 }
 
 
@@ -99,7 +105,8 @@ app.get('/repos', function(req, res){
 
 app.get('/', function(req, res){
     res.render('index', {
-        'repos': Object.keys(REPOS)
+        'repos': Object.keys(REPOS),
+        'recentCommits': RECENT_COMMITS.slice(0).reverse()
     });
 });
 
@@ -190,6 +197,17 @@ function getReadme(name){
             d.resolve(res.body.content);
         });
     return d.promise;
+}
+
+function simplifyPayload(payload){
+    return {
+        'username': payload.original.pusher.name,
+        'repoName': payload.original.repository.owner.name + "/" +payload.original.repository.name,
+        'message':  payload.original.head_commit.message,
+        'url': payload.original.head_commit.url,
+        'timestamp': new Date(payload.original.head_commit.timestamp),
+        'id': payload.original.head_commit.id
+    };
 }
 
 

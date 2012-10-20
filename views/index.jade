@@ -23,6 +23,18 @@ html
                             a(href="/add-repo") Add Your Repo
     .container
         .row
+            - recentCommits.forEach(function(commit){
+                div.commit
+                    div.header
+                        a(href="")
+                            commit.username
+                        pushed to
+                        a(href="")
+                            commit.repoName
+
+                    div.message= commit.mesage
+
+            - })
 
     script(src='/js/jquery.js')
     script(src='/socket.io/socket.io.js')
