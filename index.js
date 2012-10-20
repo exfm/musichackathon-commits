@@ -63,7 +63,7 @@ function init(cb){
     });
 }
 
-function addRepo(name){
+function addRepo(name, token){
     fs.readFile('config.json', 'utf-8', function(err, data){
         var config = JSON.parse(data);
         config.repos.push(name);
@@ -111,7 +111,11 @@ app.get('/add-repo', function(req, res){
 });
 
 app.post('/add-repo', function(req, res){
-    res.send(req.param('repo'));
+    var cookies = querystring.parse(req.headers.cookie);
+
+    addRepo(req.param('repo'), cookies.github_access_token, function(repo){
+        res.redirect("/repo/" + req.param('repo'));
+    });
 });
 
 app.get('/oauth', function(req, res){
