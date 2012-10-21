@@ -14,7 +14,8 @@ var fs = require('fs'),
     querystring = require('querystring'),
     bouncy = require('bouncy'),
     crypto = require('crypto'),
-    Buffer = require('buffer').Buffer;
+    Buffer = require('buffer').Buffer,
+    markdown = require( "markdown" ).markdown;
 
 
 gith = gith.create(10000);
@@ -155,7 +156,7 @@ app.get('/repo/:user/:name', function(req, res){
         getRepoContibutors(name).then(function(c){
             contribs = c;
             getReadme(name).then(function(c){
-                readme = new Buffer(c, 'base64').toString('utf-8');
+                readme = markdown.toHTML(new Buffer(c, 'base64').toString('utf-8'));
                 res.render('repo',
                     {
                         'repo': REPOS[name],
